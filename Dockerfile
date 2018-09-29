@@ -6,11 +6,15 @@ FROM node:alpine
 # Adds a working directory to nest the copied files so there are no conflicts in the container
 WORKDIR /usr/app
 
+# Copies the package.json file first, so if its change only then will npm install run
+# Otherwise npm install will everytime a change is made to the app
+COPY ./package.json ./
+
+# Download and install a dependencies
+RUN npm install
+
 # Copies files from local file system to the container
 COPY ./ ./
-
-# Download and install a dependency
-RUN npm install
 
 # Tell the image what to do when it starts
 # as a container
