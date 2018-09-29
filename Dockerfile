@@ -3,6 +3,9 @@
 # Alpine means the most stripped down version possible
 FROM node:alpine
 
+# Adds a working directory to nest the copied files so there are no conflicts in the container
+WORKDIR /usr/app
+
 # Copies files from local file system to the container
 COPY ./ ./
 
